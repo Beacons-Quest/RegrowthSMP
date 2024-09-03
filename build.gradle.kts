@@ -62,6 +62,12 @@ allprojects {
             options.encoding = "UTF-8"
         }
 
+        shadowJar {
+            minimize()
+
+            archiveFileName.set("${project.name}-${project.version}.jar")
+        }
+
         processResources{
             expand(project.properties)
 

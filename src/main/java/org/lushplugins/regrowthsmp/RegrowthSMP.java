@@ -1,18 +1,46 @@
 package org.lushplugins.regrowthsmp;
 
-import org.bukkit.plugin.java.JavaPlugin;
-import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
+import org.lushplugins.lushlib.plugin.SpigotPlugin;
+import org.lushplugins.regrowthsmp.config.ConfigManager;
+import org.lushplugins.regrowthsmp.module.ModuleManager;
 
-public final class RegrowthSMP extends JavaPlugin {
+public final class RegrowthSMP extends SpigotPlugin {
+    private static RegrowthSMP plugin;
+
+    private ModuleManager moduleManager;
+    private ConfigManager configManager;
+
+    @Override
+    public void onLoad() {
+        plugin = this;
+    }
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        new CrateAnimation();
+        moduleManager = new ModuleManager();
+
+        configManager = new ConfigManager();
+        configManager.reload();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        if (configManager != null) {
+            configManager.disable();
+            configManager = null;
+        }
+
+        if (moduleManager != null) {
+            moduleManager.disable();
+            moduleManager = null;
+        }
+    }
+
+    public ModuleManager getModuleManager() {
+        return moduleManager;
+    }
+
+    public static RegrowthSMP getInstance() {
+        return plugin;
     }
 }
