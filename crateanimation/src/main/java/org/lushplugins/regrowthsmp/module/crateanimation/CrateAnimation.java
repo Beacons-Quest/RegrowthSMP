@@ -1,14 +1,13 @@
-package org.lushplugins.regrowthsmp;
+package org.lushplugins.regrowthsmp.module.crateanimation;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 
-public final class RegrowthSMP extends JavaPlugin {
+public final class CrateAnimation extends JavaPlugin {
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        new CrateAnimation();
+
     }
 
     @Override
