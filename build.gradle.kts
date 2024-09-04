@@ -2,6 +2,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("io.github.goooler.shadow") version("8.1.7")
+    id("xyz.jpenilla.run-paper") version("2.2.4")
 }
 
 dependencies {
@@ -26,6 +27,15 @@ tasks {
             destinationDirectory.set(file(folder))
         }
         archiveFileName.set("${project.name}-${project.version}.jar")
+    }
+
+    runServer {
+        minecraftVersion("1.21")
+
+        downloadPlugins {
+            file("libraries/Animatronicsplugin.jar")
+            file("libraries/ExcellentCreates-5.3.2.jar")
+        }
     }
 }
 
