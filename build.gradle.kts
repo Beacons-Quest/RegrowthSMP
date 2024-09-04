@@ -35,6 +35,7 @@ tasks {
         downloadPlugins {
             file("libraries/Animatronicsplugin.jar")
             file("libraries/ExcellentCreates-5.3.2.jar")
+            github("nulli0n", "nightcore", "v2.6.3-updated", "nightcore-2.6.3.jar")
         }
     }
 }
@@ -53,6 +54,7 @@ allprojects {
         maven("https://repo.papermc.io/repository/maven-public/") // Paper
         maven("https://repo.lushplugins.org/releases/") // LushLib
         maven("https://repo.lushplugins.org/snapshots/") // LushLib
+        maven("https://jitpack.io/") // nightcore
     }
 
     dependencies {
