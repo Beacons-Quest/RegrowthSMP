@@ -29,7 +29,7 @@ tasks {
         downloadPlugins {
             file("libraries/Animatronicsplugin.jar")
             file("libraries/ExcellentCreates-5.3.2.jar")
-            github("nulli0n", "nightcore", "v2.6.3-updated", "nightcore-2.6.3.jar")
+            github("nulli0n", "nightcore-spigot", "v2.6.3-updated", "nightcore-2.6.3.jar")
         }
     }
 }
