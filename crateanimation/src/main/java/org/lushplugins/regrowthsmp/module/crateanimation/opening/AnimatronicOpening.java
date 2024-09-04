@@ -67,7 +67,7 @@ public class AnimatronicOpening extends AbstractOpening {
 
         Block crateBlock = source.getBlock();
         if (crateBlock != null) {
-            Location particleLocation = crateBlock.getLocation().clone().add(0.5, 2.5, 0.5);
+            Location particleLocation = crateBlock.getLocation().clone().add(0.5, 2, 0.5);
 
             particleSchedule(List.of(
                 new Pair<>(new ParticleBuilder(Particle.SPIT).count(3).extra(0), 30),
