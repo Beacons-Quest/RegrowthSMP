@@ -2,3 +2,6 @@ name: RegrowthSMP
 version: '1.0.0'
 main: org.lushplugins.regrowthsmp.RegrowthSMP
 api-version: '1.21'
+softdepend:
+  - Animatronics
+  - ExcellentCrates
