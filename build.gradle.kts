@@ -21,12 +21,6 @@ tasks {
         relocate("org.lushplugins.lushlib", "org.lushplugins.regrowthsmp.libraries.lushlib")
 
         minimize()
-
-        val folder = System.getenv("pluginFolder")
-        if (folder != null) {
-            destinationDirectory.set(file(folder))
-        }
-        archiveFileName.set("${project.name}-${project.version}.jar")
     }
 
     runServer {
