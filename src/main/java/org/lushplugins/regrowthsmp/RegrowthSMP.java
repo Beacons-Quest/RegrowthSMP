@@ -1,5 +1,6 @@
 package org.lushplugins.regrowthsmp;
 
+import org.lushplugins.lushlib.LushLib;
 import org.lushplugins.lushlib.plugin.SpigotPlugin;
 import org.lushplugins.regrowthsmp.config.ConfigManager;
 import org.lushplugins.regrowthsmp.module.ModuleManager;
@@ -13,6 +14,7 @@ public final class RegrowthSMP extends SpigotPlugin {
     @Override
     public void onLoad() {
         plugin = this;
+        LushLib.getInstance().enable(this);
     }
 
     @Override

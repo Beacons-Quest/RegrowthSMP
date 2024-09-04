@@ -3,6 +3,7 @@ package org.lushplugins.regrowthsmp.module.crateanimation;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.lushplugins.lushlib.module.Module;
 import org.lushplugins.lushlib.plugin.SpigotPlugin;
+import org.lushplugins.regrowthsmp.module.crateanimation.listener.ExcellentCratesListener;
 import org.lushplugins.regrowthsmp.module.crateanimation.opening.AnimatronicOpening;
 import su.nightexpress.excellentcrates.CratesAPI;
 import su.nightexpress.excellentcrates.opening.OpeningManager;
@@ -27,7 +28,9 @@ public final class CrateAnimation extends Module {
     @Override
     public void onEnable() {
         OpeningManager openingManager = CratesAPI.PLUGIN.getOpeningManager();
-        openingManager.loadProvider("default", AnimatronicOpening::new);
+        openingManager.loadProvider("regrowth-default", AnimatronicOpening::new);
+
+        new ExcellentCratesListener().registerListeners();
     }
 
     @Override

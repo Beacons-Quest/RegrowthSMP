@@ -13,13 +13,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import su.nightexpress.excellentcrates.CratesAPI;
+import su.nightexpress.excellentcrates.api.event.CrateObtainRewardEvent;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.crate.impl.Reward;
 import su.nightexpress.excellentcrates.key.CrateKey;
 import su.nightexpress.excellentcrates.opening.AbstractOpening;
 
 public class AnimatronicOpening extends AbstractOpening {
-    private boolean completed = false;
+    private boolean rolled = false;
 
     public AnimatronicOpening(@NotNull Player player, @NotNull CrateSource source, @Nullable CrateKey key) {
         super(CratesAPI.PLUGIN, player, source, key);
@@ -27,7 +28,35 @@ public class AnimatronicOpening extends AbstractOpening {
 
     @Override
     public void instaRoll() {
+        this.roll();
+        this.stop();
+    }
+
+    @Override
+    public boolean isCompleted() {
+        return rolled;
+    }
+
+    @Override
+    public long getInterval() {
+        return 1;
+    }
+
+    @Override
+    protected void onLaunch() {}
+
+    @Override
+    protected void onTick() {
+        super.onTick();
+        if (this.isRunning()) {
+            this.roll();
+            this.stop();
+        }
+    }
+
+    public void roll() {
         this.setRefundable(false);
+        this.setHasRewardAttempts(true);
 
         Animatronic animatronic = new Animatronic("DefaultCrate");
         animatronic.start();
@@ -65,40 +94,25 @@ public class AnimatronicOpening extends AbstractOpening {
                 armorStand.getEquipment().setHelmet(reward.getPreview());
             }
 
-            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            Bukkit.getScheduler().runTaskLater(this.plugin, () -> {
                 if (armorStand != null) {
                     armorStand.getEquipment().setHelmet(reward.getPreview());
                 }
 
-                Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                Bukkit.getScheduler().runTaskLater(this.plugin, () -> {
                     reward.give(player);
 
-                    Bukkit.getScheduler().runTaskLater(plugin, () -> handleClose(animatronic), 20);
+                    CrateObtainRewardEvent rewardEvent = new CrateObtainRewardEvent(reward, this.player);
+                    this.plugin.getPluginManager().callEvent(rewardEvent);
+
+                    Bukkit.getScheduler().runTaskLater(this.plugin, () -> {
+                        rolled = true;
+                        animatronic.gotoStart();
+                        CrateAnimation.getInstance().unlockCrate(crate.getName());
+                    }, 20);
                 }, 61);
             }, 42);
         }, 70);
-
-        this.stop();
-    }
-
-    public void handleClose(Animatronic animatronic) {
-        completed = true;
-        animatronic.gotoStart();
-        this.removeOpening();
-        CrateAnimation.getInstance().unlockCrate(crate.getName());
-    }
-
-    @Override
-    protected void onLaunch() {}
-
-    @Override
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    @Override
-    public long getInterval() {
-        return 1;
     }
 
     private void particleSchedule(String[][] particleScheduleArr, Location location) {
