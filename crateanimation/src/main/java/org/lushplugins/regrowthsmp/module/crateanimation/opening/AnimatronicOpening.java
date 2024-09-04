@@ -1,5 +1,6 @@
 package org.lushplugins.regrowthsmp.module.crateanimation.opening;
 
+import com.destroystokyo.paper.ParticleBuilder;
 import me.thundertnt33.animatronics.api.Animatronic;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -11,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.lushplugins.lushlib.utils.Pair;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import su.nightexpress.excellentcrates.CratesAPI;
 import su.nightexpress.excellentcrates.api.event.CrateObtainRewardEvent;
@@ -18,6 +20,8 @@ import su.nightexpress.excellentcrates.crate.impl.CrateSource;
 import su.nightexpress.excellentcrates.crate.impl.Reward;
 import su.nightexpress.excellentcrates.key.CrateKey;
 import su.nightexpress.excellentcrates.opening.AbstractOpening;
+
+import java.util.List;
 
 public class AnimatronicOpening extends AbstractOpening {
     private boolean rolled = false;
@@ -63,23 +67,27 @@ public class AnimatronicOpening extends AbstractOpening {
 
         Block crateBlock = source.getBlock();
         if (crateBlock != null) {
-            Location particleLocation = crateBlock.getLocation().clone().add(0.5, 1.5, 0.5);
+            Location particleLocation = crateBlock.getLocation().clone().add(0.5, 2.5, 0.5);
 
-            String[][] particleScheduler = {
-                {"SPIT", "3", "30"},
-                {"SPIT", "3", "40"},
-                {"SPIT", "3", "50"},
-                {"LAVA", "15", "70"},
-                {"SPIT", "5", "70"},
-                {"SPIT", "5", "173"}
-            };
-            particleSchedule(particleScheduler, particleLocation);
+            particleSchedule(List.of(
+                new Pair<>(new ParticleBuilder(Particle.SPIT).count(3).extra(0), 30),
+                new Pair<>(new ParticleBuilder(Particle.SPIT).count(3).extra(0), 40),
+                new Pair<>(new ParticleBuilder(Particle.SPIT).count(3).extra(0), 50),
+                new Pair<>(new ParticleBuilder(Particle.WAX_OFF)
+                    .count(15)
+                    .offset(0.3, 0.3, 0.3), 70),
+                new Pair<>(new ParticleBuilder(Particle.SPIT).count(5).extra(0), 70),
+                new Pair<>(new ParticleBuilder(Particle.SPIT).count(5).extra(0), 173)
+            ), particleLocation);
 
             String[][] soundScheduler = {
                 {"BLOCK_SCAFFOLDING_HIT", "1", "0.5", "30"},
+                {"BLOCK_AMETHYST_BLOCK_STEP", "1", "1.3", "30"},
                 {"BLOCK_SCAFFOLDING_HIT", "1", "0.5", "40"},
+                {"BLOCK_AMETHYST_BLOCK_STEP", "1", "1.3", "40"},
                 {"BLOCK_SCAFFOLDING_HIT", "1", "0.5", "50"},
-                {"ENTITY_GENERIC_EXPLODE", "0.7", "1", "70"},
+                {"BLOCK_AMETHYST_BLOCK_STEP", "1", "1.3", "50"},
+                {"BLOCK_ENCHANTMENT_TABLE_USE", "2", "1.7", "70"},
                 {"BLOCK_NOTE_BLOCK_PLING", "1", "2", "173"}
             };
             soundSchedule(soundScheduler, particleLocation);
@@ -115,15 +123,13 @@ public class AnimatronicOpening extends AbstractOpening {
         }, 70);
     }
 
-    private void particleSchedule(String[][] particleScheduleArr, Location location) {
-        for (String[] strings : particleScheduleArr) {
-            Particle particleType = Particle.valueOf(strings[0]);
-            int particleCount = Integer.parseInt(strings[1]);
-            int delay = Integer.parseInt(strings[2]);
+    private void particleSchedule(List<Pair<ParticleBuilder, Integer>> particleSchedule, Location location) {
+        for (Pair<ParticleBuilder, Integer> pair : particleSchedule) {
+            ParticleBuilder particleData = pair.first();
+            int delay = pair.second();
 
-            Bukkit.getScheduler().runTaskLater(CrateAnimation.getInstance().getPlugin(), () -> {
-                location.getWorld().spawnParticle(particleType, location, particleCount, 0, 0, 0, 0);
-            }, delay);
+            particleData.location(location);
+            Bukkit.getScheduler().runTaskLater(CrateAnimation.getInstance().getPlugin(), particleData::spawn, delay);
         }
     }
 
