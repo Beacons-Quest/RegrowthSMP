@@ -5,12 +5,15 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.lushplugins.lushlib.command.Command;
 import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
 import org.lushplugins.lushlib.utils.DisplayItemStack;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class GiveCosmeticCommand extends Command {
 
@@ -42,5 +45,26 @@ public class GiveCosmeticCommand extends Command {
             .forEach(itemStack -> player.getWorld().dropItem(player.getEyeLocation(), itemStack));
         ChatColorHandler.sendMessage(sender, "&#b7faa2Given cosmetic to &#66b04f" + playerName);
         return true;
+    }
+
+    @Override
+    public @Nullable List<String> tabComplete(@NotNull CommandSender sender, org.bukkit.command.@NotNull Command command, @NotNull String label, @NotNull String[] args, @NotNull String[] fullArgs) {
+        return switch (fullArgs.length) {
+            case 1 -> Bukkit.getOnlinePlayers().stream().map(Player::getName).toList();
+            case 2 -> {
+                String currArg = fullArgs[1];
+                if (currArg.isEmpty()) {
+                    yield List.of("1", "2", "3", "4", "5", "6", "7", "8", "9");
+                } else if (currArg.contains(":")) {
+                    yield Cosmetics.getInstance().getConfigManager().getDisplayNameFormats().stream()
+                        .map(format -> currArg.split(":")[0] + ":" + format)
+                        .toList();
+                } else {
+                    yield List.of(currArg + ":");
+                }
+            }
+            case 3 -> List.of("<display_name>");
+            default -> null;
+        };
     }
 }

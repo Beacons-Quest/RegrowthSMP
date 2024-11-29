@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class ConfigManager {
@@ -26,5 +27,9 @@ public class ConfigManager {
 
     public String getDisplayNameFormat(String name) {
         return displayNameFormats.get(name);
+    }
+
+    public Collection<String> getDisplayNameFormats() {
+        return displayNameFormats.keySet();
     }
 }
