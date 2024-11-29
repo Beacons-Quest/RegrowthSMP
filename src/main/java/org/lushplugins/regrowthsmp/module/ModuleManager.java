@@ -17,6 +17,10 @@ public class ModuleManager extends Manager {
         modules.clear();
     }
 
+    public Module getModule(ModuleType type) {
+        return modules.get(type);
+    }
+
     public void enableModule(ModuleType moduleType) {
         Module module = modules.get(moduleType);
         if (module == null) {

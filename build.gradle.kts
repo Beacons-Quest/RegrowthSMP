@@ -13,6 +13,7 @@ dependencies {
     implementation("org.lushplugins:LushLib:${findProperty("lushLibVersion")}")
 
     // Modules
+    implementation(project(":cosmetics"))
     implementation(project(":crateanimation"))
 }
 

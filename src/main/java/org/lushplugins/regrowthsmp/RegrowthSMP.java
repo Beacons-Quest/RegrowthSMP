@@ -2,6 +2,7 @@ package org.lushplugins.regrowthsmp;
 
 import org.lushplugins.lushlib.LushLib;
 import org.lushplugins.lushlib.plugin.SpigotPlugin;
+import org.lushplugins.regrowthsmp.command.RegrowthSMPCommand;
 import org.lushplugins.regrowthsmp.config.ConfigManager;
 import org.lushplugins.regrowthsmp.module.ModuleManager;
 
@@ -23,6 +24,8 @@ public final class RegrowthSMP extends SpigotPlugin {
 
         configManager = new ConfigManager();
         configManager.reload();
+
+        registerCommand(new RegrowthSMPCommand());
     }
 
     @Override
@@ -40,6 +43,10 @@ public final class RegrowthSMP extends SpigotPlugin {
 
     public ModuleManager getModuleManager() {
         return moduleManager;
+    }
+
+    public ConfigManager getConfigManager() {
+        return configManager;
     }
 
     public static RegrowthSMP getInstance() {
