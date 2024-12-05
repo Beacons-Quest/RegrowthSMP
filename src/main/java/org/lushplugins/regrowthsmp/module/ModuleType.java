@@ -5,12 +5,14 @@ import org.lushplugins.lushlib.plugin.SpigotPlugin;
 import org.lushplugins.regrowthsmp.RegrowthSMP;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
+import org.lushplugins.regrowthsmp.module.recipes.Recipes;
 
 import java.util.function.Function;
 
 public enum ModuleType {
     COSMETICS(Cosmetics::new),
-    CRATE_ANIMATION(CrateAnimation::new);
+    CRATE_ANIMATION(CrateAnimation::new),
+    RECIPES(Recipes::new);
 
     private final Function<SpigotPlugin, Module> moduleCallable;
 

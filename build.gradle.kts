@@ -15,6 +15,7 @@ dependencies {
     // Modules
     implementation(project(":cosmetics"))
     implementation(project(":crateanimation"))
+    implementation(project(":recipes"))
 }
 
 tasks {

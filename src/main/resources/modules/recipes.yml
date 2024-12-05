@@ -1,0 +1,22 @@
+recipes:
+  long_torch:
+    ingredients:
+      '1':
+        material: coal
+      '4':
+        material: stick
+      '7':
+        material: stick
+    result:
+      material: torch
+      display-name: "Long Torch"
+      custom-model-data: 1
+  gunpowder_stick:
+    shapeless: true
+    ingredients:
+      - material: stick
+      - material: gunpowder
+    result:
+      material: stick
+      display-name: "Gunpowder Stick"
+      custom-model-data: 1
