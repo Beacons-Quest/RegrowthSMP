@@ -1,3 +1,4 @@
 modules:
   cosmetics: true
   crate_animation: true
+  recipes: true
