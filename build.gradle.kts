@@ -6,11 +6,8 @@ plugins {
 }
 
 dependencies {
-    // Dependencies
-    compileOnly("io.papermc.paper:paper-api:${findProperty("minecraftVersion")}-R0.1-SNAPSHOT")
-
     // Libraries
-    implementation("org.lushplugins:LushLib:${findProperty("lushLibVersion")}")
+    implementation("org.lushplugins:LushLib:0.10.23")
 
     // Modules
     implementation(project(":modules:cosmetics"))
@@ -53,10 +50,8 @@ allprojects {
 
     dependencies {
         // Dependencies
-        compileOnly("io.papermc.paper:paper-api:${findProperty("minecraftVersion")}-R0.1-SNAPSHOT")
-
-        // Libraries
-        implementation("org.lushplugins:LushLib:${findProperty("lushLibVersion")}")
+        compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
+        compileOnly("org.lushplugins:LushLib:0.10.23")
     }
 
     java {
