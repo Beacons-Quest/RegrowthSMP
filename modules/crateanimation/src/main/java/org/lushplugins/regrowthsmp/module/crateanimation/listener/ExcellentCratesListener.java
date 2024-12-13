@@ -1,6 +1,7 @@
 package org.lushplugins.regrowthsmp.module.crateanimation.listener;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.lushplugins.lushlib.listener.EventListener;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import org.lushplugins.regrowthsmp.module.crateanimation.opening.AnimatronicOpening;
@@ -11,7 +12,7 @@ import su.nightexpress.excellentcrates.opening.OpeningManager;
 
 import java.util.Objects;
 
-public class ExcellentCratesListener implements EventListener {
+public class ExcellentCratesListener implements Listener {
 
     @EventHandler
     public void onCrateOpen(CrateOpenEvent event) {

@@ -1,4 +1,4 @@
 rootProject.name = "RegrowthSMP"
-include("cosmetics")
-include("crateanimation")
-include("recipes")
+include(":modules:cosmetics")
+include(":modules:crateanimation")
+include(":modules:recipes")

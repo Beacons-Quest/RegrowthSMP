@@ -13,9 +13,9 @@ dependencies {
     implementation("org.lushplugins:LushLib:${findProperty("lushLibVersion")}")
 
     // Modules
-    implementation(project(":cosmetics"))
-    implementation(project(":crateanimation"))
-    implementation(project(":recipes"))
+    implementation(project(":modules:cosmetics"))
+    implementation(project(":modules:crateanimation"))
+    implementation(project(":modules:recipes"))
 }
 
 tasks {

@@ -30,7 +30,9 @@ public final class CrateAnimation extends Module {
         OpeningManager openingManager = CratesAPI.PLUGIN.getOpeningManager();
         openingManager.loadProvider("regrowth-default", AnimatronicOpening::new);
 
-        new ExcellentCratesListener().registerListeners();
+        plugin.registerListeners(
+            new ExcellentCratesListener()
+        );
     }
 
     @Override
