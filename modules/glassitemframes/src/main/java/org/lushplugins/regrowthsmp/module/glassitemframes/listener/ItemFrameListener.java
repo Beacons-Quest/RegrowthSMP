@@ -9,10 +9,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.lushplugins.lushlib.utils.DisplayItemStack;
 import org.lushplugins.regrowthsmp.module.glassitemframes.GlassItemFrames;
 
 public class ItemFrameListener implements Listener {
+    private static final DisplayItemStack GLASS_ITEM_FRAME = DisplayItemStack.builder()
+        .setType(Material.ITEM_FRAME)
+        .setDisplayName("&rGlass Item Frame")
+        .setCustomModelData(1)
+        .build();
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onHangingBreak(HangingBreakEvent event) {
@@ -40,10 +45,6 @@ public class ItemFrameListener implements Listener {
     }
 
     private ItemStack createGlassFrame() {
-        ItemStack itemStack = Bukkit.getServer().getUnsafe().modifyItemStack(new ItemStack(Material.ITEM_FRAME), "minecraft:item_frame[entity_data={id:\"minecraft:item_frame\",Invisible:1b}]");
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setCustomModelData(1);
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
+        return Bukkit.getServer().getUnsafe().modifyItemStack(GLASS_ITEM_FRAME.asItemStack(), "minecraft:item_frame[entity_data={id:\"minecraft:item_frame\",Invisible:1b}]");
     }
 }
