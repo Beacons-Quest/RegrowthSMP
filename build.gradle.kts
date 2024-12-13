@@ -5,6 +5,9 @@ plugins {
     id("xyz.jpenilla.run-paper") version("2.2.4")
 }
 
+group = "org.lushplugins"
+version = "1.0.3"
+
 dependencies {
     // Libraries
     implementation("org.lushplugins:LushLib:0.10.24")
@@ -36,13 +39,19 @@ tasks {
     }
 }
 
-allprojects {
+subprojects {
     apply(plugin = "java-library")
     apply(plugin = "io.github.goooler.shadow")
 
-    group = "org.lushplugins"
-    version = "1.0.3"
+    group = rootProject.group
+    version = rootProject.version
 
+    dependencies {
+        compileOnly("org.lushplugins:LushLib:0.10.24")
+    }
+}
+
+allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
@@ -55,9 +64,7 @@ allprojects {
     }
 
     dependencies {
-        // Dependencies
         compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
-        compileOnly("org.lushplugins:LushLib:0.10.24")
     }
 
     java {
