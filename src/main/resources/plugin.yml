@@ -10,3 +10,5 @@ commands:
     usage: /regrowthsmp
   givecosmetic:
     usage: /givecosmetic
+  recipes:
+    usage: /recipes

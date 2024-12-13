@@ -39,7 +39,7 @@ allprojects {
     apply(plugin = "io.github.goooler.shadow")
 
     group = "org.lushplugins"
-    version = "1.0.2"
+    version = "1.0.3"
 
     repositories {
         mavenLocal()
