@@ -7,17 +7,20 @@ plugins {
 
 dependencies {
     // Libraries
-    implementation("org.lushplugins:LushLib:0.10.23")
+    implementation("org.lushplugins:LushLib:0.10.24")
 
     // Modules
     implementation(project(":modules:cosmetics"))
     implementation(project(":modules:crateanimation"))
     implementation(project(":modules:recipes"))
+    implementation(project(":modules:glassitemframes"))
+    implementation(project(":modules:extraluckpermscontexts"))
 }
 
 tasks {
     shadowJar {
         relocate("org.lushplugins.lushlib", "org.lushplugins.regrowthsmp.libraries.lushlib")
+        relocate("fr.skytasul", "org.lushplugins.regrowthsmp.libraries.skytasul")
 
         minimize()
     }
@@ -26,6 +29,8 @@ tasks {
         minecraftVersion("1.21.1")
 
         downloadPlugins {
+            modrinth("luckperms", "v5.4.145-bukkit")
+            hangar("Floodgate", "Floodgate")
             github("nulli0n", "nightcore-spigot", "v2.6.3-updated", "nightcore-2.6.3.jar")
         }
     }
@@ -45,13 +50,14 @@ allprojects {
         maven("https://repo.papermc.io/repository/maven-public/") // Paper
         maven("https://repo.lushplugins.org/releases/") // LushLib
         maven("https://repo.lushplugins.org/snapshots/") // LushLib
+        maven("https://repo.opencollab.dev/main/") // Floodgate
         maven("https://jitpack.io/") // nightcore
     }
 
     dependencies {
         // Dependencies
         compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
-        compileOnly("org.lushplugins:LushLib:0.10.23")
+        compileOnly("org.lushplugins:LushLib:0.10.24")
     }
 
     java {

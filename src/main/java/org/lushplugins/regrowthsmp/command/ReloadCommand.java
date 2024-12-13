@@ -3,10 +3,13 @@ package org.lushplugins.regrowthsmp.command;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.lushplugins.lushlib.command.SubCommand;
 import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
 import org.lushplugins.regrowthsmp.RegrowthSMP;
 import org.lushplugins.regrowthsmp.module.ModuleType;
+
+import java.util.List;
 
 public class ReloadCommand extends SubCommand {
 
@@ -31,5 +34,16 @@ public class ReloadCommand extends SubCommand {
         }
 
         return true;
+    }
+
+    @Override
+    public @Nullable List<String> tabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args, @NotNull String[] fullArgs) {
+        if (args.length == 1) {
+            return RegrowthSMP.getInstance().getModuleManager().getModuleTypes().stream()
+                .map(moduleType -> moduleType.name().toLowerCase())
+                .toList();
+        } else {
+            return null;
+        }
     }
 }

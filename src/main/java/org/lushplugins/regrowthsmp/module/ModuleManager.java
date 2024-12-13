@@ -4,6 +4,7 @@ import org.lushplugins.lushlib.manager.Manager;
 import org.lushplugins.lushlib.module.Module;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class ModuleManager extends Manager {
     private final HashMap<ModuleType, Module> modules = new HashMap<>();
@@ -15,6 +16,10 @@ public class ModuleManager extends Manager {
         }
 
         modules.clear();
+    }
+
+    public Set<ModuleType> getModuleTypes() {
+        return modules.keySet();
     }
 
     public Module getModule(ModuleType type) {
