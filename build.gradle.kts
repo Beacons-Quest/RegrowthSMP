@@ -23,7 +23,7 @@ tasks {
     }
 
     runServer {
-        minecraftVersion("1.21")
+        minecraftVersion("1.21.1")
 
         downloadPlugins {
             github("nulli0n", "nightcore-spigot", "v2.6.3-updated", "nightcore-2.6.3.jar")
