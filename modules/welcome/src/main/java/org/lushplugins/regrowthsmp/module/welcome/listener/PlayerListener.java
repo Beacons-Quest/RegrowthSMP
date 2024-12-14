@@ -24,7 +24,7 @@ public class PlayerListener implements Listener {
         if (!player.hasPlayedBefore()) {
             rewardedPlayers.clear();
             playerName = player.getName();
-            timeout = Instant.now().toEpochMilli();
+            timeout = Instant.now().getEpochSecond() + 20;
 
             if (Welcome.getInstance().getConfigManager().hasFirstJoinMessage()) {
                 ChatColorHandler.broadcastMessage(Welcome.getInstance().getConfigManager().getFirstJoinMessage()
@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
             return;
         }
 
-        if (timeout < Instant.now().toEpochMilli()) {
+        if (timeout < Instant.now().getEpochSecond()) {
             timeout = null;
             return;
         }
