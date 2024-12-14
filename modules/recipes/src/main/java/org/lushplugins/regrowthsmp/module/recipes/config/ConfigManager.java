@@ -32,7 +32,7 @@ public class ConfigManager {
     }
 
     public void reloadConfig() {
-        ConfigurationSection config = YamlConfiguration.loadConfiguration(new File(Recipes.getInstance().getPlugin().getDataFolder(), "modules/recipes.yml"));
+        ConfigurationSection config = Recipes.getInstance().getPlugin().getConfigResource("modules/recipes.yml");
         this.showInRecipeBook = config.getBoolean("show-in-recipe-book", true);
 
         this.recipes = new HashMap<>();

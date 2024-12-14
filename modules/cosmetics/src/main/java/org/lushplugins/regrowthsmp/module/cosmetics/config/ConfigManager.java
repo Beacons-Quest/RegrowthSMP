@@ -16,7 +16,7 @@ public class ConfigManager {
     }
 
     public void reloadConfig() {
-        ConfigurationSection config = YamlConfiguration.loadConfiguration(new File(Cosmetics.getInstance().getPlugin().getDataFolder(), "modules/cosmetics.yml"));
+        ConfigurationSection config = Cosmetics.getInstance().getPlugin().getConfigResource("modules/cosmetics.yml");
 
         this.displayNameFormats = new HashMap<>();
         ConfigurationSection themesSection = config.getConfigurationSection("display-name-themes");
