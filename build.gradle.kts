@@ -15,9 +15,10 @@ dependencies {
     // Modules
     implementation(project(":modules:cosmetics"))
     implementation(project(":modules:crateanimation"))
-    implementation(project(":modules:recipes"))
-    implementation(project(":modules:glassitemframes"))
     implementation(project(":modules:extraluckpermscontexts"))
+    implementation(project(":modules:glassitemframes"))
+    implementation(project(":modules:recipes"))
+    implementation(project(":modules:welcome"))
 }
 
 tasks {

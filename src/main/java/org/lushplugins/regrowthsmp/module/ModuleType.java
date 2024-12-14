@@ -8,6 +8,7 @@ import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import org.lushplugins.regrowthsmp.module.glassitemframes.GlassItemFrames;
 import org.lushplugins.regrowthsmp.module.extraluckpermscontexts.ExtraLuckPermsContexts;
 import org.lushplugins.regrowthsmp.module.recipes.Recipes;
+import org.lushplugins.regrowthsmp.module.welcome.Welcome;
 
 import java.util.function.Function;
 
@@ -17,7 +18,8 @@ public enum ModuleType {
     CRATE_ANIMATION((plugin) -> new CrateAnimation(plugin)),
     GLASS_ITEM_FRAMES((plugin) -> new GlassItemFrames(plugin)),
     LUCK_PERMS_CONTEXTS((plugin) -> new ExtraLuckPermsContexts(plugin)),
-    RECIPES((plugin) -> new Recipes(plugin));
+    RECIPES((plugin) -> new Recipes(plugin)),
+    WELCOME((plugin) -> new Welcome(plugin));
 
     private final Function<SpigotPlugin, Module> moduleCallable;
 
