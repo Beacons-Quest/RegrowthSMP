@@ -36,11 +36,6 @@ public final class Recipes extends Module {
         configManager.reloadConfig();
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
     public SpigotPlugin getPlugin() {
         return plugin;
     }

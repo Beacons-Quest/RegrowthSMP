@@ -29,11 +29,6 @@ public final class Cosmetics extends Module {
         configManager.reloadConfig();
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
     public SpigotPlugin getPlugin() {
         return plugin;
     }

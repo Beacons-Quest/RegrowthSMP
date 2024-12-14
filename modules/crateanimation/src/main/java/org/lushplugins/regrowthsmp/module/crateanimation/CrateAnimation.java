@@ -23,21 +23,13 @@ public final class CrateAnimation extends Module {
         if (instance == null) {
             instance = this;
         }
-    }
 
-    @Override
-    public void onEnable() {
         OpeningManager openingManager = CratesAPI.PLUGIN.getOpeningManager();
         openingManager.loadProvider("regrowth-default", AnimatronicOpening::new);
 
         plugin.registerListeners(
             new ExcellentCratesListener()
         );
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
     }
 
     public boolean isCrateLocked(String crateName) {
