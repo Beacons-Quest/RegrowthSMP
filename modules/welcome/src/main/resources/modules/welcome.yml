@@ -1,1 +1,3 @@
+first-join-message: "<newline><#a8e1ff>Welcome <#58b1e0>%player_name%</#58b1e0> to the server!<newline>"
+reward-message: "<#a8e1ff>You earned some experience for welcoming <#58b1e0>%player%"
 exp-reward: 10

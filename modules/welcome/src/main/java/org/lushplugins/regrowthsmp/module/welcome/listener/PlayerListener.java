@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
 import org.lushplugins.regrowthsmp.module.welcome.Welcome;
 
 import java.time.Instant;
@@ -14,13 +15,21 @@ import java.util.UUID;
 
 public class PlayerListener implements Listener {
     private final HashSet<UUID> rewardedPlayers = new HashSet<>();
-    private Long timeout = null;
+    private String playerName;
+    private Long timeout;
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (!event.getPlayer().hasPlayedBefore()) {
+        Player player = event.getPlayer();
+        if (!player.hasPlayedBefore()) {
             rewardedPlayers.clear();
+            playerName = player.getName();
             timeout = Instant.now().toEpochMilli();
+
+            if (Welcome.getInstance().getConfigManager().hasFirstJoinMessage()) {
+                ChatColorHandler.broadcastMessage(Welcome.getInstance().getConfigManager().getFirstJoinMessage()
+                    .replace("%player%", player.getName()));
+            }
         }
     }
 
@@ -45,6 +54,11 @@ public class PlayerListener implements Listener {
         if (message.contains("welcome")) {
             rewardedPlayers.add(uuid);
             player.giveExp(Welcome.getInstance().getConfigManager().getExpReward());
+
+            if (Welcome.getInstance().getConfigManager().hasRewardMessage()) {
+                ChatColorHandler.broadcastMessage(Welcome.getInstance().getConfigManager().getRewardMessage()
+                    .replace("%player%", playerName));
+            }
         }
     }
 }
