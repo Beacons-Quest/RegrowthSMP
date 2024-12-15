@@ -52,7 +52,7 @@ public class PlayerListener implements Listener {
         }
 
         String message = PlainTextComponentSerializer.plainText().serialize(event.message());
-        if (message.contains("welcome")) {
+        if (message.toLowerCase().contains("welcome")) {
             rewardedPlayers.add(uuid);
             player.giveExp(Welcome.getInstance().getConfigManager().getExpReward());
 
