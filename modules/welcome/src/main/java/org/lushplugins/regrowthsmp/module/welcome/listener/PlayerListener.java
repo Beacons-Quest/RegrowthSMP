@@ -25,7 +25,7 @@ public class PlayerListener implements Listener {
         if (!player.hasPlayedBefore()) {
             rewardedPlayers.clear();
             playerName = player.getName();
-            timeout = Instant.now().getEpochSecond() + 20;
+            timeout = Instant.now().getEpochSecond() + 30;
 
             if (Welcome.getInstance().getConfigManager().hasFirstJoinMessage()) {
                 ChatColorHandler.broadcastMessage(Welcome.getInstance().getConfigManager().getFirstJoinMessage()
