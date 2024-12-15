@@ -4,6 +4,7 @@ import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
@@ -18,7 +19,7 @@ public class PlayerListener implements Listener {
     private String playerName;
     private Long timeout;
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (!player.hasPlayedBefore()) {
@@ -56,7 +57,7 @@ public class PlayerListener implements Listener {
             player.giveExp(Welcome.getInstance().getConfigManager().getExpReward());
 
             if (Welcome.getInstance().getConfigManager().hasRewardMessage()) {
-                ChatColorHandler.broadcastMessage(Welcome.getInstance().getConfigManager().getRewardMessage()
+                ChatColorHandler.sendMessage(player, Welcome.getInstance().getConfigManager().getRewardMessage()
                     .replace("%player%", playerName));
             }
         }
