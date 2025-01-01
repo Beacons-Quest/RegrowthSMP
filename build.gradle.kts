@@ -15,6 +15,7 @@ dependencies {
     // Modules
     implementation(project(":modules:cosmetics"))
     implementation(project(":modules:crateanimation"))
+    implementation(project(":modules:effects"))
     implementation(project(":modules:extraluckpermscontexts"))
     implementation(project(":modules:glassitemframes"))
     implementation(project(":modules:recipes"))
