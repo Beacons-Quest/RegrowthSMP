@@ -1,0 +1,8 @@
+unbreakable-blocks:
+  - monster_spawner
+  - trial_spawner
+  - vault
+
+messages:
+  deny-break: "&#ff6969This block is unbreakable"
+  bypass: "&#ffda54You have broken an unbreakable block"
