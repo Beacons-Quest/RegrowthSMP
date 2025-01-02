@@ -1,4 +1,4 @@
-package org.lushplugins.regrowthsmp.module.ecoeffects.effect;
+package org.lushplugins.regrowthsmp.module.effects.effect;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
-import org.lushplugins.regrowthsmp.module.ecoeffects.Effects;
+import org.lushplugins.regrowthsmp.module.effects.Effects;
 
 public class BetterPotionsEffect extends Effect implements Listener {
 

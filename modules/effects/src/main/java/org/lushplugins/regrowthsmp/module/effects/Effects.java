@@ -1,9 +1,9 @@
-package org.lushplugins.regrowthsmp.module.ecoeffects;
+package org.lushplugins.regrowthsmp.module.effects;
 
 import org.bukkit.event.Listener;
 import org.lushplugins.lushlib.module.Module;
 import org.lushplugins.lushlib.plugin.SpigotPlugin;
-import org.lushplugins.regrowthsmp.module.ecoeffects.effect.*;
+import org.lushplugins.regrowthsmp.module.effects.effect.*;
 
 import java.util.HashMap;
 

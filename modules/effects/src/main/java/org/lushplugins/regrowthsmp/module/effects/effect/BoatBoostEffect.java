@@ -1,4 +1,4 @@
-package org.lushplugins.regrowthsmp.module.ecoeffects.effect;
+package org.lushplugins.regrowthsmp.module.effects.effect;
 
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;

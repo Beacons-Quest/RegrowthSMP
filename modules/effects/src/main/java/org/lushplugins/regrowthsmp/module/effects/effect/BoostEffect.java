@@ -1,4 +1,4 @@
-package org.lushplugins.regrowthsmp.module.ecoeffects.effect;
+package org.lushplugins.regrowthsmp.module.effects.effect;
 
 public class BoostEffect extends Effect {
 
