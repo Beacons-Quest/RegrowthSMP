@@ -21,7 +21,7 @@ public class BlockListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onBlockBreak(BlockBreakEvent event) {
         Block block = event.getBlock();
-        if (block.getType() != Material.SPAWNER) {
+        if (!UnbreakableBlocks.getInstance().getConfigManager().getUnbreakableBlocks().contains(block.getType())) {
             return;
         }
 
