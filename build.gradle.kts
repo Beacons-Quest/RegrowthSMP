@@ -19,7 +19,7 @@ dependencies {
     implementation(project(":modules:extraluckpermscontexts"))
     implementation(project(":modules:glassitemframes"))
     implementation(project(":modules:recipes"))
-    implementation(project(":modules:unbreakablespawners"))
+    implementation(project(":modules:unbreakableblocks"))
     implementation(project(":modules:welcome"))
 }
 

@@ -16,11 +16,11 @@ public class ConfigManager {
     private String bypassMessage;
 
     public ConfigManager() {
-        UnbreakableBlocks.getInstance().getPlugin().saveDefaultResource("modules/unbreakable_spawners.yml");
+        UnbreakableBlocks.getInstance().getPlugin().saveDefaultResource("modules/unbreakable_blocks.yml");
     }
 
     public void reloadConfig() {
-        ConfigurationSection config = UnbreakableBlocks.getInstance().getPlugin().getConfigResource("modules/unbreakable_spawners.yml");
+        ConfigurationSection config = UnbreakableBlocks.getInstance().getPlugin().getConfigResource("modules/unbreakable_blocks.yml");
 
         this.unbreakableBlocks = RegistryUtils.fromStringList(config.getStringList("unbreakable-blocks"), Registry.MATERIAL);
         this.torchDisabledSpawners = RegistryUtils.fromStringList(config.getStringList("torch-disabled-spawners"), Registry.ENTITY_TYPE);
