@@ -5,9 +5,11 @@ import org.lushplugins.lushlib.plugin.SpigotPlugin;
 import org.lushplugins.regrowthsmp.RegrowthSMP;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
+import org.lushplugins.regrowthsmp.module.effects.Effects;
 import org.lushplugins.regrowthsmp.module.glassitemframes.GlassItemFrames;
 import org.lushplugins.regrowthsmp.module.extraluckpermscontexts.ExtraLuckPermsContexts;
 import org.lushplugins.regrowthsmp.module.recipes.Recipes;
+import org.lushplugins.regrowthsmp.module.unbreakableblocks.UnbreakableBlocks;
 import org.lushplugins.regrowthsmp.module.welcome.Welcome;
 
 import java.util.function.Function;
@@ -16,9 +18,11 @@ import java.util.function.Function;
 public enum ModuleType {
     COSMETICS((plugin) -> new Cosmetics(plugin)),
     CRATE_ANIMATION((plugin) -> new CrateAnimation(plugin)),
+    EFFECTS((plugin) -> new Effects(plugin)),
     GLASS_ITEM_FRAMES((plugin) -> new GlassItemFrames(plugin)),
     LUCK_PERMS_CONTEXTS((plugin) -> new ExtraLuckPermsContexts(plugin)),
     RECIPES((plugin) -> new Recipes(plugin)),
+    UNBREAKABLE_BLOCKS((plugin) -> new UnbreakableBlocks(plugin)),
     WELCOME((plugin) -> new Welcome(plugin));
 
     private final Function<SpigotPlugin, Module> moduleCallable;
