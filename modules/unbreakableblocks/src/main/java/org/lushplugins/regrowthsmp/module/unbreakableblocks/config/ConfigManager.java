@@ -24,8 +24,8 @@ public class ConfigManager {
 
         this.unbreakableBlocks = RegistryUtils.fromStringList(config.getStringList("unbreakable-blocks"), Registry.MATERIAL);
         this.torchDisabledSpawners = RegistryUtils.fromStringList(config.getStringList("torch-disabled-spawners"), Registry.ENTITY_TYPE);
-        this.denyMessage = config.getString("message.deny-break");
-        this.bypassMessage = config.getString("message.bypass");
+        this.denyMessage = config.getString("messages.deny-break");
+        this.bypassMessage = config.getString("messages.bypass");
     }
 
     public List<Material> getUnbreakableBlocks() {
