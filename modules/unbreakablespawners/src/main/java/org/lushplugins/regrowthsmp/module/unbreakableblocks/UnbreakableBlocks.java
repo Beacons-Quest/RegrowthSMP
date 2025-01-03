@@ -4,6 +4,7 @@ import org.lushplugins.lushlib.module.Module;
 import org.lushplugins.lushlib.plugin.SpigotPlugin;
 import org.lushplugins.regrowthsmp.module.unbreakableblocks.config.ConfigManager;
 import org.lushplugins.regrowthsmp.module.unbreakableblocks.listener.BlockListener;
+import org.lushplugins.regrowthsmp.module.unbreakableblocks.listener.SpawnerListener;
 
 public class UnbreakableBlocks extends Module {
     private static UnbreakableBlocks instance;
@@ -21,7 +22,10 @@ public class UnbreakableBlocks extends Module {
 
         this.configManager = new ConfigManager();
 
-        plugin.registerListener(new BlockListener());
+        plugin.registerListeners(
+            new BlockListener(),
+            new SpawnerListener()
+        );
     }
 
     @Override
