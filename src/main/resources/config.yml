@@ -1,6 +1,7 @@
 modules:
   cosmetics: true
   crate_animation: true
+  effects: true
   glass_item_frames: true
   luck_perms_contexts: true
   recipes: true
