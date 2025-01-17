@@ -10,8 +10,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionType;
-import org.jetbrains.annotations.Nullable;
 import org.lushplugins.regrowthsmp.module.effects.Effects;
+import org.lushplugins.regrowthsmp.module.effects.data.EffectsUser;
 
 public class BetterPotionsEffect extends Effect implements Listener {
 
@@ -21,7 +21,11 @@ public class BetterPotionsEffect extends Effect implements Listener {
 
     @EventHandler
     public void onConsumePotion(PlayerItemConsumeEvent event) {
-        // TODO: Add check for player with effect
+        Player player = event.getPlayer();
+        EffectsUser user = Effects.getInstance().getUserManager().getUser(player.getUniqueId());
+        if (user == null || !user.getCurrentEffect().equals(this.getId())) {
+            return;
+        }
 
         ItemStack item = event.getItem();
         ItemMeta itemMeta = item.getItemMeta();
@@ -34,7 +38,6 @@ public class BetterPotionsEffect extends Effect implements Listener {
             return;
         }
 
-        Player player = event.getPlayer();
         Bukkit.getScheduler().runTaskLater(Effects.getInstance().getPlugin(), () -> {
             for (PotionEffect potionEffect : potionType.getPotionEffects()) {
                 PotionEffect amplifiedEffect = potionEffect.withAmplifier(potionEffect.getAmplifier() + 1);
