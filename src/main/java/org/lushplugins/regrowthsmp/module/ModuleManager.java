@@ -1,8 +1,9 @@
 package org.lushplugins.regrowthsmp.module;
 
 import org.lushplugins.lushlib.manager.Manager;
-import org.lushplugins.lushlib.module.Module;
+import org.lushplugins.regrowthsmp.common.module.Module;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -20,6 +21,10 @@ public class ModuleManager extends Manager {
 
     public Set<ModuleType> getModuleTypes() {
         return modules.keySet();
+    }
+
+    public Collection<Module> getModules() {
+        return modules.values();
     }
 
     public Module getModule(ModuleType type) {

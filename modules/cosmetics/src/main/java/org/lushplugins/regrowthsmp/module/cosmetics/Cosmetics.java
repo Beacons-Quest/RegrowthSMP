@@ -1,19 +1,17 @@
 package org.lushplugins.regrowthsmp.module.cosmetics;
 
-import org.lushplugins.lushlib.module.Module;
-import org.lushplugins.lushlib.plugin.SpigotPlugin;
+import org.lushplugins.regrowthsmp.common.module.Module;
+import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.cosmetics.command.GiveCosmeticCommand;
 import org.lushplugins.regrowthsmp.module.cosmetics.config.ConfigManager;
 
 public final class Cosmetics extends Module {
     private static Cosmetics instance;
 
-    private final SpigotPlugin plugin;
     private final ConfigManager configManager;
 
-    public Cosmetics(SpigotPlugin plugin) {
-        super("cosmetics");
-        this.plugin = plugin;
+    public Cosmetics(RegrowthPlugin plugin) {
+        super("cosmetics", plugin);
 
         if (instance == null) {
             instance = this;
@@ -27,10 +25,6 @@ public final class Cosmetics extends Module {
     @Override
     public void onEnable() {
         configManager.reloadConfig();
-    }
-
-    public SpigotPlugin getPlugin() {
-        return plugin;
     }
 
     public ConfigManager getConfigManager() {

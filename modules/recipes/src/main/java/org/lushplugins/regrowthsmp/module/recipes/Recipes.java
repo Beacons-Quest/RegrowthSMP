@@ -1,7 +1,7 @@
 package org.lushplugins.regrowthsmp.module.recipes;
 
-import org.lushplugins.lushlib.module.Module;
-import org.lushplugins.lushlib.plugin.SpigotPlugin;
+import org.lushplugins.regrowthsmp.common.module.Module;
+import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.recipes.command.RecipesCommand;
 import org.lushplugins.regrowthsmp.module.recipes.config.ConfigManager;
 import org.lushplugins.regrowthsmp.module.recipes.listener.CraftListener;
@@ -10,12 +10,10 @@ import org.lushplugins.regrowthsmp.module.recipes.listener.PlayerListener;
 public final class Recipes extends Module {
     private static Recipes instance;
 
-    private final SpigotPlugin plugin;
     private final ConfigManager configManager;
 
-    public Recipes(SpigotPlugin plugin) {
-        super("recipes");
-        this.plugin = plugin;
+    public Recipes(RegrowthPlugin plugin) {
+        super("recipes", plugin);
 
         if (instance == null) {
             instance = this;
@@ -34,10 +32,6 @@ public final class Recipes extends Module {
     @Override
     public void onEnable() {
         configManager.reloadConfig();
-    }
-
-    public SpigotPlugin getPlugin() {
-        return plugin;
     }
 
     public ConfigManager getConfigManager() {

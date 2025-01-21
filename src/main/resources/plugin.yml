@@ -12,3 +12,5 @@ commands:
     usage: /givecosmetic
   recipes:
     usage: /recipes
+  abilities:
+    usage: /abilities

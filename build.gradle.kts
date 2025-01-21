@@ -9,13 +9,18 @@ group = "org.lushplugins"
 version = "1.0.11"
 
 dependencies {
+    // Dependencies
+    compileOnly("com.mysql:mysql-connector-j:8.3.0")
+    compileOnly("org.xerial:sqlite-jdbc:3.46.0.0")
+
     // Libraries
     implementation("org.lushplugins:LushLib:0.10.24")
 
     // Modules
+    implementation(project(":common"))
+    implementation(project(":modules:abilities"))
     implementation(project(":modules:cosmetics"))
     implementation(project(":modules:crateanimation"))
-    implementation(project(":modules:effects"))
     implementation(project(":modules:extraluckpermscontexts"))
     implementation(project(":modules:glassitemframes"))
     implementation(project(":modules:recipes"))
@@ -51,6 +56,10 @@ subprojects {
 
     dependencies {
         compileOnly("org.lushplugins:LushLib:0.10.24")
+
+        if (project.name != "common") {
+            compileOnly(project(":common"))
+        }
     }
 }
 

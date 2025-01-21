@@ -1,8 +1,9 @@
 rootProject.name = "RegrowthSMP"
 
+include(":common")
+include(":modules:abilities")
 include(":modules:cosmetics")
 include(":modules:crateanimation")
-include(":modules:effects")
 include(":modules:extraluckpermscontexts")
 include(":modules:glassitemframes")
 include(":modules:recipes")
