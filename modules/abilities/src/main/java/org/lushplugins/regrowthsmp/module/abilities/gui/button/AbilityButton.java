@@ -23,6 +23,7 @@ public class AbilityButton extends ItemButton {
     public AbilityButton(String ability, Material material, List<String> description) {
         super((event) -> {
             HumanEntity entity = event.getWhoClicked();
+            // TODO: Remove permission check and instead hook into EcoSkills to check their level in a skill
             if (!entity.hasPermission("regrowthsmp.abilities." + ability)) {
                 return;
             }
@@ -53,6 +54,7 @@ public class AbilityButton extends ItemButton {
         DisplayItemStack.Builder itemBuilder = DisplayItemStack.builder(this.item);
         List<String> lore = itemBuilder.hasLore() ? new ArrayList<>(itemBuilder.getLore()) : new ArrayList<>();
 
+        // TODO: Remove permission check and instead hook into EcoSkills to check their level in a skill
         if (player.hasPermission("regrowthsmp.abilities." + ability)) {
             AbilitiesUser user = Abilities.getInstance().getCachedUserData(player.getUniqueId());
             if (user != null) {
@@ -61,7 +63,7 @@ public class AbilityButton extends ItemButton {
             }
         } else {
             lore.add(" ");
-            lore.add("&#ff6969&oYou have not unlocked this ability");
+            lore.add("&#ff6969&oReach level 10 Foraging in /skills to unlock this");
         }
 
         ItemStack item = DisplayItemStack.builder(this.item)
