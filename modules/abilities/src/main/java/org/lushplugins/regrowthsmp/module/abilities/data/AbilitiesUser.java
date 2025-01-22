@@ -19,7 +19,7 @@ public class AbilitiesUser extends UserData {
         }
 
         this.currentAbility = json.get("currentAbility").getAsString();
-        this.abilityChangeCooldownUntil = json.has("abilityChangeCooldown") ? json.get("abilityChangeCooldown").getAsLong() : -1;
+        this.abilityChangeCooldownUntil = json.has("abilityChangeCooldownUntil") ? json.get("abilityChangeCooldownUntil").getAsLong() : -1;
     }
 
     public AbilitiesUser(UUID uuid, String currentEffect) {
@@ -49,7 +49,8 @@ public class AbilitiesUser extends UserData {
     }
 
     public void startAbilityChangeCooldown() {
-        abilityChangeCooldownUntil = Instant.now().getEpochSecond() + 300; // 5 minutes
+        abilityChangeCooldownUntil = Instant.now().getEpochSecond() + 600; // 10 minutes
+        Abilities.getInstance().getPlugin().saveCachedSMPUser(this.getUUID());
     }
 
     @Override
