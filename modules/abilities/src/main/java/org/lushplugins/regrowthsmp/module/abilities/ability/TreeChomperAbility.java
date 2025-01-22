@@ -52,7 +52,7 @@ public class TreeChomperAbility extends Ability implements Listener {
             return;
         }
 
-        Skill skill = Skills.INSTANCE.get("lumberjack");
+        Skill skill = Skills.INSTANCE.get("woodcutting");
         if (skill == null) {
             return;
         }
