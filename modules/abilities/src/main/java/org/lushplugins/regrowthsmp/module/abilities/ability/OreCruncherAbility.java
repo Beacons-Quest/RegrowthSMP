@@ -1,5 +1,8 @@
 package org.lushplugins.regrowthsmp.module.abilities.ability;
 
+import com.willfp.ecoskills.api.EcoSkillsAPI;
+import com.willfp.ecoskills.skills.Skill;
+import com.willfp.ecoskills.skills.Skills;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
@@ -36,7 +39,6 @@ public class OreCruncherAbility extends Ability implements Listener {
         Material.NETHER_GOLD_ORE,
         Material.NETHER_QUARTZ_ORE
     );
-    private static final int BREAK_LIMIT = 6; // TODO: Add higher counts for higher levels (6, 8, 12)
 
     public OreCruncherAbility() {
         super(AbilityTypes.ORE_CRUNCHER);
@@ -69,7 +71,24 @@ public class OreCruncherAbility extends Ability implements Listener {
             return;
         }
 
-        new VeinMineTask(block, BREAK_LIMIT, player);
+        Skill skill = Skills.INSTANCE.get("mining");
+        if (skill == null) {
+            return;
+        }
+
+        int breakLimit;
+        int skillLevel = EcoSkillsAPI.getSkillLevel(player, skill);
+        if (skillLevel < 10) {
+            return;
+        } else if (skillLevel < 15) {
+            breakLimit = 6;
+        } else if (skillLevel < 20) {
+            breakLimit = 8;
+        } else {
+            breakLimit = 12;
+        }
+
+        new VeinMineTask(block, breakLimit, player);
     }
 
     public static class VeinMineTask {

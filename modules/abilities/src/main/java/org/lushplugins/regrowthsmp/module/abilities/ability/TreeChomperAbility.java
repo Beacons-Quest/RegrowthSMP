@@ -1,5 +1,8 @@
 package org.lushplugins.regrowthsmp.module.abilities.ability;
 
+import com.willfp.ecoskills.api.EcoSkillsAPI;
+import com.willfp.ecoskills.skills.Skill;
+import com.willfp.ecoskills.skills.Skills;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -17,7 +20,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class TreeChomperAbility extends Ability implements Listener {
-    private static final int BREAK_LIMIT = 16; // TODO: Add higher counts for higher levels (16, 24, 32)
 
     public TreeChomperAbility() {
         super(AbilityTypes.TREE_CHOMPER);
@@ -50,7 +52,24 @@ public class TreeChomperAbility extends Ability implements Listener {
             return;
         }
 
-        new LumberTask(block, BREAK_LIMIT, player);
+        Skill skill = Skills.INSTANCE.get("lumberjack");
+        if (skill == null) {
+            return;
+        }
+
+        int breakLimit;
+        int skillLevel = EcoSkillsAPI.getSkillLevel(player, skill);
+        if (skillLevel < 10) {
+            return;
+        } else if (skillLevel < 15) {
+            breakLimit = 16;
+        } else if (skillLevel < 20) {
+            breakLimit = 24;
+        } else {
+            breakLimit = 32;
+        }
+
+        new LumberTask(block, breakLimit, player);
     }
 
     public static class LumberTask {

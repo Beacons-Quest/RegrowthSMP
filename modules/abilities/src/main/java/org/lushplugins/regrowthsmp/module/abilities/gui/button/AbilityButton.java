@@ -1,7 +1,9 @@
 package org.lushplugins.regrowthsmp.module.abilities.gui.button;
 
+import com.willfp.ecoskills.api.EcoSkillsAPI;
+import com.willfp.ecoskills.skills.Skill;
+import com.willfp.ecoskills.skills.Skills;
 import org.bukkit.Material;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -18,17 +20,20 @@ import java.util.UUID;
 
 public class AbilityButton extends ItemButton {
     private final String ability;
+    private final String ecoSkill;
     private final DisplayItemStack item;
 
-    public AbilityButton(String ability, Material material, List<String> description) {
+    public AbilityButton(String ability, String ecoSkill, Material material, List<String> description) {
         super((event) -> {
-            HumanEntity entity = event.getWhoClicked();
-            // TODO: Remove permission check and instead hook into EcoSkills to check their level in a skill
-            if (!entity.hasPermission("regrowthsmp.abilities." + ability)) {
+            if (!(event.getWhoClicked() instanceof Player player)) {
                 return;
             }
 
-            UUID uuid = entity.getUniqueId();
+            if (!meetsSkillCriteria(player, ecoSkill)) {
+                return;
+            }
+
+            UUID uuid = player.getUniqueId();
             AbilitiesUser user = Abilities.getInstance().getCachedUserData(uuid);
             if (user != null) {
                 user.setCurrentAbility(ability);
@@ -43,6 +48,7 @@ public class AbilityButton extends ItemButton {
         });
 
         this.ability = ability;
+        this.ecoSkill = ecoSkill;
         this.item = DisplayItemStack.builder(material)
             .setDisplayName("&#FBC067&l" + makeFriendly(ability))
             .setLore(description.stream().map(line -> "&#A7A4A0" + line).toList())
@@ -54,8 +60,7 @@ public class AbilityButton extends ItemButton {
         DisplayItemStack.Builder itemBuilder = DisplayItemStack.builder(this.item);
         List<String> lore = itemBuilder.hasLore() ? new ArrayList<>(itemBuilder.getLore()) : new ArrayList<>();
 
-        // TODO: Remove permission check and instead hook into EcoSkills to check their level in a skill
-        if (player.hasPermission("regrowthsmp.abilities." + ability)) {
+        if (meetsSkillCriteria(player, ecoSkill)) {
             AbilitiesUser user = Abilities.getInstance().getCachedUserData(player.getUniqueId());
             if (user != null) {
                 lore.add(" ");
@@ -77,6 +82,16 @@ public class AbilityButton extends ItemButton {
         );
 
         return item;
+    }
+
+    private static boolean meetsSkillCriteria(Player player, String skillId) {
+        Skill skill = Skills.INSTANCE.get(skillId);
+        if (skill == null) {
+            return false;
+        }
+
+        int skillLevel = EcoSkillsAPI.getSkillLevel(player, skill);
+        return skillLevel >= 10;
     }
 
     private static String makeFriendly(String string) {

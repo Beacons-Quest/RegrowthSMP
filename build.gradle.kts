@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "org.lushplugins"
-version = "1.0.11"
+version = "1.1.0"
 
 dependencies {
     // Dependencies
@@ -72,6 +72,7 @@ allprojects {
         maven("https://repo.lushplugins.org/releases/") // LushLib
         maven("https://repo.lushplugins.org/snapshots/") // LushLib
         maven("https://repo.opencollab.dev/main/") // Floodgate
+        maven("https://repo.auxilor.io/repository/maven-public/") // EcoSkills
         maven("https://jitpack.io/") // nightcore
     }
 
