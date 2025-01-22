@@ -4,11 +4,13 @@ import com.willfp.ecoskills.api.EcoSkillsAPI;
 import com.willfp.ecoskills.skills.Skill;
 import com.willfp.ecoskills.skills.Skills;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.lushplugins.lushlib.gui.button.ItemButton;
 import org.lushplugins.lushlib.gui.inventory.Gui;
+import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
 import org.lushplugins.lushlib.manager.GuiManager;
 import org.lushplugins.lushlib.utils.DisplayItemStack;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
@@ -36,7 +38,15 @@ public class AbilityButton extends ItemButton {
             UUID uuid = player.getUniqueId();
             AbilitiesUser user = Abilities.getInstance().getCachedUserData(uuid);
             if (user != null) {
+                if (user.isOnAbilityChangeCooldown()){ {
+                    ChatColorHandler.sendMessage(player, String.format("&#ff6969You are on ability change cooldown for %s seconds", user.remainingAbilityChangeCooldown()));
+                    return;
+                }}
+
                 user.setCurrentAbility(ability);
+                user.startAbilityChangeCooldown();
+
+                player.playSound(player, Sound.ENTITY_WIND_CHARGE_WIND_BURST, 1f, 0.5f);
 
                 Abilities.getInstance().getPlugin().getManager(GuiManager.class).ifPresent(manager -> {
                     Gui gui = manager.getGui(uuid);
@@ -68,7 +78,7 @@ public class AbilityButton extends ItemButton {
             }
         } else {
             lore.add(" ");
-            lore.add("&#ff6969&oReach level 10 Foraging in /skills to unlock this");
+            lore.add(String.format("&#ff6969&oReach level 10 %s in /skills to unlock this", ecoSkill));
         }
 
         ItemStack item = DisplayItemStack.builder(this.item)
