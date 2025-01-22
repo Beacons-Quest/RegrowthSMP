@@ -23,7 +23,7 @@ public class BetterPotionsAbility extends Ability implements Listener {
     public void onConsumePotion(PlayerItemConsumeEvent event) {
         Player player = event.getPlayer();
         AbilitiesUser user = Abilities.getInstance().getCachedUserData(player.getUniqueId());
-        if (user == null || !user.getCurrentAbility().equals(this.getId())) {
+        if (user == null || user.getCurrentAbility() == null || !user.getCurrentAbility().equals(this.getId())) {
             return;
         }
 

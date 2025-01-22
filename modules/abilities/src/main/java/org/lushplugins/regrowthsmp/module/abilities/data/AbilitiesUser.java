@@ -18,7 +18,7 @@ public class AbilitiesUser extends UserData {
             return;
         }
 
-        this.currentAbility = json.get("currentAbility").getAsString();
+        this.currentAbility = json.has("currentAbility") ? json.get("currentAbility").getAsString() : null;
         this.abilityChangeCooldownUntil = json.has("abilityChangeCooldownUntil") ? json.get("abilityChangeCooldownUntil").getAsLong() : -1;
     }
 
@@ -27,7 +27,7 @@ public class AbilitiesUser extends UserData {
         this.currentAbility = currentEffect;
     }
 
-    public String getCurrentAbility() {
+    public @Nullable String getCurrentAbility() {
         return currentAbility;
     }
 

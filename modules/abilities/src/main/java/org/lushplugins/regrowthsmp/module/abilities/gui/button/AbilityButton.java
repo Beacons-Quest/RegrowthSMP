@@ -74,7 +74,7 @@ public class AbilityButton extends ItemButton {
             AbilitiesUser user = Abilities.getInstance().getCachedUserData(player.getUniqueId());
             if (user != null) {
                 lore.add(" ");
-                lore.add("&#A7A4A0Active: &#FFD392" + (user.getCurrentAbility().equals(ability) ? "true" : "false"));
+                lore.add("&#A7A4A0Active: &#FFD392" + (user.getCurrentAbility() != null && user.getCurrentAbility().equals(ability) ? "true" : "false"));
             }
         } else {
             lore.add(" ");
