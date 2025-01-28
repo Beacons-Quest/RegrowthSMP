@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import org.jetbrains.annotations.Nullable;
 import org.lushplugins.regrowthsmp.common.data.UserData;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
+import org.lushplugins.regrowthsmp.module.abilities.api.event.AbilitiesUserChangeAbilityEvent;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -32,6 +33,12 @@ public class AbilitiesUser extends UserData {
     }
 
     public void setCurrentAbility(String currentAbility) {
+        if (currentAbility.equals(this.currentAbility)) {
+            return;
+        }
+
+        Abilities.getInstance().getPlugin().callEvent(new AbilitiesUserChangeAbilityEvent(this, currentAbility, this.currentAbility));
+
         this.currentAbility = currentAbility;
         Abilities.getInstance().getPlugin().saveCachedSMPUser(this.getUUID());
     }
