@@ -9,6 +9,7 @@ import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.abilities.ability.*;
 import org.lushplugins.regrowthsmp.module.abilities.command.AbiltiesCommand;
 import org.lushplugins.regrowthsmp.module.abilities.data.AbilitiesUser;
+import org.lushplugins.regrowthsmp.module.abilities.hook.PlaceholderAPIHook;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -33,6 +34,8 @@ public class Abilities extends Module {
         registerEffect(new OreCruncherAbility());
         registerEffect(new StepAbility());
         registerEffect(new TreeChomperAbility());
+
+        new PlaceholderAPIHook().enable();
 
         plugin.registerCommand(new AbiltiesCommand());
     }

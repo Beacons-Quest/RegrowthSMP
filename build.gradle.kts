@@ -14,7 +14,7 @@ dependencies {
     compileOnly("org.xerial:sqlite-jdbc:3.46.0.0")
 
     // Libraries
-    implementation("org.lushplugins:LushLib:0.10.24")
+    implementation("org.lushplugins:LushLib:0.10.35")
 
     // Modules
     implementation(project(":common"))
@@ -43,6 +43,7 @@ tasks {
             modrinth("luckperms", "v5.4.145-bukkit")
             hangar("Floodgate", "Floodgate")
             github("nulli0n", "nightcore-spigot", "v2.6.3-updated", "nightcore-2.6.3.jar")
+            hangar("PlaceholderAPI", "2.11.6")
         }
     }
 }
@@ -55,7 +56,7 @@ subprojects {
     version = rootProject.version
 
     dependencies {
-        compileOnly("org.lushplugins:LushLib:0.10.24")
+        compileOnly("org.lushplugins:LushLib:0.10.35")
 
         if (project.name != "common") {
             compileOnly(project(":common"))
@@ -73,6 +74,7 @@ allprojects {
         maven("https://repo.lushplugins.org/snapshots/") // LushLib
         maven("https://repo.opencollab.dev/main/") // Floodgate
         maven("https://repo.auxilor.io/repository/maven-public/") // EcoSkills
+        maven("https://repo.helpch.at/releases/") // PlaceholderAPI
         maven("https://jitpack.io/") // nightcore
     }
 
