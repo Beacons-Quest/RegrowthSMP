@@ -3,6 +3,7 @@ modules:
   crate_animation: true
   effects: true
   glass_item_frames: true
+  pinata: true
   luck_perms_contexts: true
   recipes: true
   unbreakable_blocks: true

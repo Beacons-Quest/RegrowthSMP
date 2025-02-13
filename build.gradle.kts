@@ -23,6 +23,7 @@ dependencies {
     implementation(project(":modules:crateanimation"))
     implementation(project(":modules:extraluckpermscontexts"))
     implementation(project(":modules:glassitemframes"))
+    implementation(project(":modules:pinata"))
     implementation(project(":modules:recipes"))
     implementation(project(":modules:unbreakableblocks"))
     implementation(project(":modules:welcome"))
